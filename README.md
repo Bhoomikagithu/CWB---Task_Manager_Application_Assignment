@@ -1,73 +1,30 @@
-# Task Manager with C++ Data Structures
+# Task Manager Application
 
-This project implements a Task Manager application with a Python UI but using C++ data structures for performance optimization.
+This is a simple Task Manager built with Streamlit that manages tasks based on their priority using Stack, Queue and Linked List data structures:
 
-## Overview
+- **High Priority** tasks are managed using a **Stack**
+- **Medium Priority** tasks are managed using a **Queue** 
+- **Low Priority** tasks are managed using a **Linked List**.
 
-- The data structures (LinkedList, Stack, Queue) are implemented in C++
-- The UI and application logic remain in Python
-- Python bindings are created using pybind11
+## Features
 
-## Requirements
+- Add tasks with title, description, and priority.
+- View tasks by priority or all tasks together.
+- Delete tasks from each priority category.
+- Uses Streamlit session state to maintain tasks during the session.
 
-- Python 3.6+
-- C++ compiler (GCC, MSVC, etc.)
-- pybind11 (`pip install pybind11`)
-- setuptools (`pip install setuptools`)
+## How it Works
 
-## Building the C++ Extension
+- **Stack** for high priority tasks allows the most recent high priority task to be addressed first.
+- **Queue** for medium priority tasks allows tasks to be handled in the order they were added.
+- **Linked List** for low priority tasks stores tasks in the order added and deletes from the front.
+ 
+ ## Requirements
 
-1. Install pybind11:
-   ```
-   pip install pybind11
-   ```
+- Python 
+- Streamlit
 
-2. Build the C++ extension:
-   ```
-   python setup.py build_ext --inplace
-   ```
+Run the app using the following command in your terminal:
 
-3. Once built, you'll have a `task_structures` module that can be imported in Python.
-
-## Integrating with the Task Manager
-
-To use the C++ data structures with the existing Task Manager app:
-
-1. Replace the TaskManager class in your task.py file with the one from cpp_task_manager.py:
-   ```python
-   from cpp_task_manager import TaskManager
-   ```
-
-2. Make sure to remove the original Python implementation of Node, LinkedList, Stack, and Queue classes as they're now implemented in C++.
-
-## Performance Benefits
-
-The C++ implementation of data structures provides several benefits:
-
-- Faster operations for large datasets (adding, removing, updating tasks)
-- More efficient memory usage
-- Same functionality as the Python version but with better performance
-
-## Understanding the Code
-
-- `task_structures.cpp`: C++ implementation of LinkedList, Stack, and Queue
-- `setup.py`: Build script for creating the Python extension
-- `cpp_task_manager.py`: Python wrapper for using the C++ data structures
-
-## Testing
-
-After building the extension, you can test it with:
-
-```python
-import task_structures
-
-# Create a linked list
-ll = task_structures.LinkedList()
-
-# Add a task
-ll.append({"id": 1, "title": "Test Task"})
-
-# Get all tasks
-tasks = ll.get_all()
-print(tasks)
-``` 
+```bash
+streamlit run Task_manager.py
